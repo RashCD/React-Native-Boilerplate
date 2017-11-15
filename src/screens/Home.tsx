@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import * as React from 'react';
 import { View, Text } from 'react-native';
 
-class Push extends Component {
+class Push extends React.Component {
   render() {
     return (
       <View>
