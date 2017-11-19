@@ -26,7 +26,7 @@ public class MainApplication extends NavigationApplication {
   //   protected List<ReactPackage> getPackages() {
   //     return Arrays.<ReactPackage>asList(
   //         new MainReactPackage(),
-            new VectorIconsPackage()
+  //          new VectorIconsPackage()
   //     );
   //   }
   //
@@ -48,6 +48,11 @@ public class MainApplication extends NavigationApplication {
   // }
 
   @Override
+   public String getJSMainModuleName() {
+     return "index";
+   }
+
+  @Override
   public boolean isDebug() {
     // Make sure you are using BuildConfig from your own application
     return BuildConfig.DEBUG;
@@ -57,6 +62,7 @@ public class MainApplication extends NavigationApplication {
     // Add additional packages you require here
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
+            new VectorIconsPackage()
     // eg. new VectorIconsPackage()
     );
   }

@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 import { Button } from 'react-native-elements';
 
 class NavigationTypes extends React.Component<any, any> {
-    pushScreen = () => {
+    public pushScreen = () => {
         this.props.navigator.push({
             screen: 'Home',
             title: 'New Screen'
         });
-    };
+    }
 
     public render() {
         return (
