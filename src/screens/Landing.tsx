@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
+import { connect } from 'react-redux';
 
 import { Button } from 'react-native-elements';
 
 class NavigationTypes extends React.Component<any, any> {
     public pushScreen = () => {
         this.props.navigator.push({
-            screen: 'Home',
-            title: 'New Screen'
+            screen: 'Library',
+            title: 'New Library Screen'
         });
     }
 
@@ -28,4 +29,4 @@ class NavigationTypes extends React.Component<any, any> {
     }
 }
 
-export default NavigationTypes;
+export default connect()(NavigationTypes);
