@@ -1,4 +1,3 @@
-const data = require('../dummyData/LibraryList.json');
-console.log(data);
+import data from '../dummyData/LibraryList';
 
 export default () => data;
