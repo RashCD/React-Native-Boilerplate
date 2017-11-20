@@ -1,2 +1,2 @@
-__STRESS_TEST__ = false;
-import App from './output/app';
+// __STRESS_TEST__ = false;
+import './output/app';
