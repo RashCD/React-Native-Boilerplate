@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
-import { Card, List, ListItem } from 'react-native-elements';
-import { connect } from 'react-redux';
+import * as React from "react";
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { Card, List, ListItem } from "react-native-elements";
+import { connect } from "react-redux";
 
-import * as actions from '../actions';
+import * as actions from "../actions";
 
 class Library extends React.Component<any, any> {
     public render() {
@@ -34,8 +34,8 @@ class Library extends React.Component<any, any> {
 
     private headerComponent = () => {
         return (
-            <View style={{ width: '100%', height: 50, justifyContent: 'center', alignItems: 'center'}}>
-                <Text style={{ fontSize: 15, fontWeight: 'bold'}}>Tech Stack</Text>
+            <View style={{ width: "100%", height: 50, justifyContent: "center", alignItems: "center"}}>
+                <Text style={{ fontSize: 15, fontWeight: "bold"}}>Tech Stack</Text>
             </View>
         );
     }
