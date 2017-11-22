@@ -1,9 +1,8 @@
-import { combineReducers, Reducer } from "redux";
-import data from "../dummyData/LibraryList";
-import LibraryReducer from "./LibraryReducer";
-import SelectionReducer from "./SelectionReducer";
+import { combineReducers } from "redux";
+import apiServiceReducer from "./ApiServiceReducer";
+import authReducer from "./AuthReducer";
 
 export default combineReducers({
-    libraries: LibraryReducer,
-    selectedLibraryId: SelectionReducer
+    auth: authReducer,
+    apiService: apiServiceReducer
 });

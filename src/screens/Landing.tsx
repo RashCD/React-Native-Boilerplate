@@ -1,10 +1,13 @@
+
 import * as React from "react";
 import { Text, View } from "react-native";
+import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 
-import { Button } from "react-native-elements";
+declare const firebase: any;
 
 class NavigationTypes extends React.Component<any, any> {
+
     public pushScreen = () => {
         this.props.navigator.push({
             screen: "Login",

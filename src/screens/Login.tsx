@@ -7,24 +7,44 @@ import {
     FormLabel,
     FormValidationMessage,
 } from "react-native-elements";
+import { connect } from "react-redux";
 
-class Login extends React.Component {
+import { emailChange, passwordChange, request } from "../actions/index";
+
+let emailInput: any = null;
+let showError: boolean = false;
+
+let passwordInput: any = null;
+
+class Login extends React.Component<any, any> {
     public render() {
+        console.log(this.props);
         return (
             <Card title="Login">
                 <FormLabel labelStyle={{ color: "black", fontWeight: "normal"}}>Email</FormLabel>
-                <FormInput placeholder={"test@test.com"} inputStyle={{ color: "black" }}/>
-                <FormValidationMessage>
-                    Incorrect email
-                </FormValidationMessage>
+                <FormInput
+                    ref={(ref) => { emailInput = ref; }}
+                    placeholder={"test@test.com"}
+                    inputStyle={{ color: "black" }}
+                    onChangeText={this.emailChange}
+                    value={this.props.email}
+                />
 
                 <View style={{ height: 10 }}/>
 
                 <FormLabel labelStyle={{ color: "black", fontWeight: "normal"}}>Password</FormLabel>
-                <FormInput placeholder={"password"} inputStyle={{ color: "black" }}/>
-                <FormValidationMessage>
-                    Incorrect password
-                </FormValidationMessage>
+                <FormInput
+                    ref={(ref) => { passwordInput = ref; }}
+                    placeholder={"password"}
+                    inputStyle={{ color: "black" }}
+                    secureTextEntry={true}
+                    onChangeText={this.passwordChange}
+                    value={this.props.password}
+                />
+                {showError ?
+                    <FormValidationMessage>Complete all the field</FormValidationMessage> :
+                    null
+                }
 
                 <View style={{ height: 30 }}/>
 
@@ -34,11 +54,42 @@ class Login extends React.Component {
                     backgroundColor={"dodgerblue"}
                     color={"white"}
                     title="LOGIN"
-                    onPress={() => {}}
+                    onPress={() => this.submitButton()}
                 />
             </Card>
         );
     }
+    protected emailChange = (text: string) => {
+        this.props.emailChange(text);
+    }
+
+    protected passwordChange = (text: string) => {
+        this.props.passwordChange(text);
+    }
+
+    protected submitButton = () => {
+        const { email, password } = this.props;
+        if (email === "" || password === "") {
+            showError = true;
+            emailInput.shake();
+            passwordInput.shake();
+            this.forceUpdate();
+            return null;
+        }
+
+        this.props.request({email, password});
+
+    }
+
 }
 
-export default Login;
+const mapStateToProps = (state: any) => {
+    return {
+        email: state.auth.email,
+        password: state.auth.password
+    };
+};
+
+export default connect(mapStateToProps, {
+    emailChange, passwordChange, request
+})(Login);

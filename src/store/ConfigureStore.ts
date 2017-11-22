@@ -1,15 +1,13 @@
-import { applyMiddleware, createStore } from 'redux';
-import rootReducer from '../reducers';
+import { applyMiddleware, createStore } from "redux";
+import createSagaMiddleware from "redux-saga";
+import rootReducer from "../reducers";
 
-// let middleware = ['thunk'];
+import userLogin from "../actions/sagas";
 
-// if (__DEV__) {
-//     const reduxImmutableStateInvariant = require('redux-immutable-state-invariant').default();
-//     middleware = [...middleware, reduxImmutableStateInvariant];
-// } else {
-//     middleware = [...middleware];
-// }
+const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore() {
-    return createStore(rootReducer);
+    const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+    sagaMiddleware.run(userLogin);
+    return store;
 }
